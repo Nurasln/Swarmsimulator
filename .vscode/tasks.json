@@ -4,13 +4,14 @@
         {
             "label": "SFML Build (MSYS2)",
             "type": "shell",
-            "command": "g++", 
+            "command": "g++",
             "args": [
                 "-g",
                 "${workspaceFolder}/main.cpp",
+                "${workspaceFolder}/src/Agent.cpp",
                 "-o",
                 "${workspaceFolder}/main.exe",
-
+                "-I${workspaceFolder}/include",
                 "-mwindows",
                 "-lsfml-graphics",
                 "-lsfml-window",
