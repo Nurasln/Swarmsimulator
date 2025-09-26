@@ -9,13 +9,20 @@ public:
     Agent(float x, float y);
 
     // Updates the agent's position based on the elapsed time (dt).
-    void update(float dt);
+    void update(float dt, const std::vector<Agent> &allAgents);
 
     // Draws the agent to the specified window.
     void draw(sf::RenderWindow &window);
+
+    sf::Vector2f getPosition() const { return position; }
+    sf::Vector2f getVelocity() const { return velocity; }
 
 private:
     sf::Vector2f position; // Agent's current location
     sf::Vector2f velocity; // Agent's current speed (in pixels per second)
     sf::CircleShape shape; // Visual representation of the agent
+
+    float maxSpeed;
+    float maxForce;
+    float perceptionRadius;
 };

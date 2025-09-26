@@ -1,18 +1,30 @@
 #include <SFML/Graphics.hpp>
+#include <vector>
 #include "Agent.hpp"
+#include <cstdlib>
+#include <ctime>
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(800, 600), "Swarmsimulator");
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
+    srand(time(NULL));
 
-    Agent myAgent(400, 300);
+    sf::RenderWindow window(sf::VideoMode(800, 600), "Swarmsimulator");
+    window.setFramerateLimit(60);
+
+    std::vector<Agent> agents;
+    const int AGENT_COUNT = 100;
+    for (int i = 0; i < AGENT_COUNT; i++)
+    { 
+        float startX = rand() % window.getSize().x;
+        float startY = rand() % window.getSize().y;
+        agents.push_back(Agent(startX, startY));
+    }
 
     sf::Clock clock;
     while (window.isOpen())
     {
-        float dt = clock.restart().asSeconds();
+
+        float dt = clock.restart().asSeconds(); 
         sf::Event event;
         while (window.pollEvent(event))
         {
@@ -21,11 +33,20 @@ int main()
                 window.close();
         }
 
-        myAgent.update(dt);
+        for (auto &agent : agents)
+        {
+            agent.update(dt , agents);
+        }
+
         window.clear();
-        myAgent.draw(window);
+
+        for (auto &agent : agents)
+        {
+            agent.draw(window);
+        }
+
         window.display();
     }
 
     return 0;
-} 
+}
