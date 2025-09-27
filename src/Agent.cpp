@@ -53,7 +53,7 @@ Agent::Agent(float x, float y)
     perceptionRadius = 50.0f; // Radius to consider other agents
 }
 
-void Agent::update(float dt, const std::vector<Agent> &allAgents)
+void Agent::update(float dt, const std::vector<Agent*> &neighbors)
 {
     // Boids algorithm implementation
     sf::Vector2f separation(0, 0);
@@ -62,22 +62,22 @@ void Agent::update(float dt, const std::vector<Agent> &allAgents)
 
     int perceptionCount = 0;
 
-    for (const auto &otherAgent : allAgents)
+    for (const auto &otherAgent : neighbors)
     {
-        if (this == &otherAgent) // Skip self
+        if (this == otherAgent) // Skip self
         {
             continue;
         }
 
-        sf::Vector2f difference = position - otherAgent.getPosition(); // Vector pointing from other agent to this agent
+        sf::Vector2f difference = position - otherAgent->getPosition(); // Vector pointing from other agent to this agent
         float distance = magnitude(difference); // Distance between agents
 
         // Check if within perception radius
         if (distance < perceptionRadius)
         {
-            alignment += otherAgent.getVelocity(); 
+            alignment += otherAgent->getVelocity(); 
 
-            cohesion += otherAgent.getPosition();
+            cohesion += otherAgent->getPosition();
 
             if (distance < perceptionRadius / 2) // Stronger separation when closer
             {

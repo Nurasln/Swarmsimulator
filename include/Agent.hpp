@@ -8,8 +8,10 @@ public:
     // Constructor
     Agent(float x, float y);
 
+    float getPerceptionRadius() const { return perceptionRadius; }
+
     // Updates the agent's position based on the elapsed time (dt).
-    void update(float dt, const std::vector<Agent> &allAgents);
+    void update(float dt, const std::vector<Agent *> &neighbors);
 
     // Draws the agent to the specified window.
     void draw(sf::RenderWindow &window);
