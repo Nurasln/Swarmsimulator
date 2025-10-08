@@ -14,7 +14,6 @@ This simulation is based on Craig Reynolds' classic "Boids" algorithm. Hundreds,
     * **Alignment:** Causes agents to steer towards the average direction of their local flockmates.
     * **Cohesion:** Encourages agents to move towards the average position (center of mass) of their local flockmates.
 * **Object-Oriented Design:** All agent behaviors and properties are encapsulated within a modular and manageable `Agent` class.
-* **Polymorphism:** Agents are not limited to a single shape. Using `std::unique_ptr` and the `sf::Shape` base class, agents are randomly instantiated as Circles, Squares, or Triangles, demonstrating a key feature of OOP in C++.
 * **Performance Optimization with a Quadtree:** Instead of a naive O(n²) neighbor search algorithm, a Quadtree data structure was implemented from scratch to efficiently partition the 2D space. This reduces the time complexity of neighbor searching to **O(n log n)**, allowing for thousands of agents to be simulated in real-time.
 * **Modern C++ Multithreading:** The agent update loop is parallelized using `std::thread`. This allows the simulation to take full advantage of modern multi-core CPUs, significantly boosting performance at high agent counts.
 
