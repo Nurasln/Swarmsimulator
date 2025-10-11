@@ -34,7 +34,7 @@ int main()
     window.setFramerateLimit(60);
 
     std::vector<Agent> agents;
-    const int AGENT_COUNT = 28000;
+    const int AGENT_COUNT = 1000;
     for (int i = 0; i < AGENT_COUNT; i++)
     {
         float startX = rand() % window.getSize().x;

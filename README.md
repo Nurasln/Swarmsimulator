@@ -2,6 +2,7 @@
 
 This project is a high-performance swarm/flocking simulation created from scratch in modern C++ using the SFML library. The project demonstrates how complex, self-organizing emergent behavior can arise from a set of simple rules.
 
+![Swarm Simulation Demo](demo.gif)
 
 ## 📜 About The Project
 
